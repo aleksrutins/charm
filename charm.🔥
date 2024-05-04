@@ -1,0 +1,22 @@
+from vendor.prism import Flag, Command, CommandArc
+
+fn root(command: CommandArc, args: List[String]) -> None:
+    print("Please use --help to show options.")
+
+fn init(command: CommandArc, args: List[String]) -> None:
+    print('Hello')
+
+fn main() -> None:
+    var root_command = Command(
+        name="charm",
+        description="A package manager for Mojo projects.",
+        run=root,
+    )
+
+    var init_command = Command(
+        name="init",
+        description="Initialize a new project.",
+        run=init,
+    )
+    root_command.add_command(init_command)
+    root_command.execute()
